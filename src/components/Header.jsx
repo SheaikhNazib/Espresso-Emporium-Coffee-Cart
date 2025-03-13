@@ -5,8 +5,17 @@ import logo from '../../images/more/logo1.png';
 import Hero from './Hero';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '../providers/AuthProvider'; // Import the useAuth hook
 
 const Header = () => {
+    const { user, logout } = useAuth(); // Get the current user and logout function
+
+    const handleLogout = () => {
+        logout().then(() => {
+            // Redirect to the home page after logout
+            window.location.href = '/';
+        });
+    };
 
     const links = <>
         <li><NavLink to="/" className="text-white">Home</NavLink></li>
@@ -51,8 +60,16 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end text-white pe-7">
-                <a href='/signup'><FontAwesomeIcon icon={faRightFromBracket} size="2x" /></a>
-                
+                {user ? (
+                    <>
+                        <span className="mr-4">Hi, {user.displayName || user.email}</span>
+                        <button onClick={handleLogout} className="btn btn-ghost">
+                            <FontAwesomeIcon icon={faRightFromBracket} size="2x" />
+                        </button>
+                    </>
+                ) : (
+                    <NavLink to="/signin" className="btn btn-primary">Login</NavLink>
+                )}
             </div>
         </div>
     );

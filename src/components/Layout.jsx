@@ -7,7 +7,7 @@ import Footer from './Footer';
 
 const Layout = () => {
     return (
-        <div className='max-w-6xl mx-auto'>
+        <div className=' mx-auto'>
             <Header></Header>
             <Hero></Hero>
             <Outlet></Outlet>

@@ -1,3 +1,5 @@
+
+
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
@@ -60,7 +62,7 @@ const router = createBrowserRouter([
   {
     path: 'store',
     element: <Store></Store>,
-    loader: () => fetch('http://localhost:5000/coffee').then(res => res.json())
+    loader: () => fetch('http://localhost:5000/coffee')
   },
   
  
