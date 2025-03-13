@@ -36,7 +36,7 @@ const SingUp = () => {
                 console.log("user created to db",data)
                 if(data.insertedId){
                     console.log('user created in database')
-                    navigate('/'); // Redirect to home page
+                    navigate('/signin'); // signin
                 }
             })
         })
@@ -67,6 +67,7 @@ const SingUp = () => {
                                 <label className="fieldset-label">Password</label>
                                 <input type="password" className="input" placeholder="Password" name='password' />
                                 <div><a className="link link-hover">Forgot password?</a></div>
+                                <div>Already have an account? <a href='/signin' className="link link-hover text-blue-600">Sign In</a></div>
                                 <button className="btn btn-neutral mt-4">Sign Up</button>
                             </fieldset>
                         </div>

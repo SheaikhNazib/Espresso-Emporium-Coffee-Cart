@@ -16,6 +16,7 @@ import SingUp from './components/SignUp.jsx';
 import AuthProvider from './providers/AuthProvider.jsx';
 import Users from './components/Users.jsx';
 import View from './components/View.jsx';
+import Store from './components/Store.jsx'
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,11 @@ const router = createBrowserRouter([
     path: 'view/:id',
     element: <View></View>,
     loader: ({ params }) => fetch(`http://localhost:5000/coffee/${params.id}`)
+  },
+  {
+    path: 'store',
+    element: <Store></Store>,
+    loader: () => fetch('http://localhost:5000/coffee').then(res => res.json())
   },
   
  

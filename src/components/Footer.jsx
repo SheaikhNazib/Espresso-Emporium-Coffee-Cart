@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import footer_bg from '../../images/more/13.jpg';
 import cup from '../../images/more/logo1.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee, faPhone, faEnvelope, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import {  faPhone, faEnvelope, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import AOS from 'aos';
 import 'aos/dist/aos.css';

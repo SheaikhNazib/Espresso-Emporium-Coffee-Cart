@@ -1,44 +1,97 @@
 import React, { useContext } from 'react';
 import { authContext } from '../providers/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const SignIn = () => {
+    const { signInUser, signInWithGoogle } = useContext(authContext);
+    const navigate = useNavigate();
 
-    const {signInUser} = useContext(authContext)
-
-    const handleSignIn = e =>{
+    const handleSignIn = e => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        console.log(email, password)
         signInUser(email, password)
-        .then(result => {
-            console.log(result.user);
+            .then(result => {
+                console.log(result.user);
 
-            //update last login time
-            const lastSignIntime = result?.user?.metadata?.lastSignInTime;
-            const loginInfo = {email, lastSignIntime};
+                // Update last login time
+                const lastSignInTime = result?.user?.metadata?.lastSignInTime;
+                const loginInfo = { email, lastSignInTime };
 
-            fetch(`http://localhost:5000/users`, {
-                method: 'PATCH',
-                headers:{
-                    'content-type' : 'application/json'
-                },
-                body: JSON.stringify(loginInfo)
+                fetch(`http://localhost:5000/users`, {
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(loginInfo)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('Sign in info updated on DB', data);
+                    });
 
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Signed in successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                }).then(() => {
+                    navigate('/');
+                });
             })
-            .then(res => res.json())
-            .then(data =>{
-                console.log('sign in info updated on DB', data)
+            .catch(error => {
+                console.error('Error signing in:', error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: error.message,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+            });
+    };
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                console.log(result.user);
+
+                // Update last login time
+                const lastSignInTime = result?.user?.metadata?.lastSignInTime;
+                const loginInfo = { email: result.user.email, lastSignInTime };
+
+                fetch(`http://localhost:5000/users`, {
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(loginInfo)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('Sign in info updated on DB', data);
+                    });
+
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Signed in successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                }).then(() => {
+                    navigate('/');
+                });
             })
-
-        })
-        .catch(error =>{
-            console.log(error)
-        })
-    }
-
+            .catch(error => {
+                console.error('Error signing in with Google:', error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: error.message,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+            });
+    };
 
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -56,17 +109,17 @@ const SignIn = () => {
                         <div className="card-body">
                             <fieldset className="fieldset">
                                 <label className="fieldset-label">Email</label>
-                                <input type="email" className="input" placeholder="Email" name='email' />
+                                <input type="email" className="input" placeholder="Email" name='email' required />
                                 <label className="fieldset-label">Password</label>
-                                <input type="password" className="input" placeholder="Password" name='password' />
+                                <input type="password" className="input" placeholder="Password" name='password' required />
                                 <div><a className="link link-hover">Forgot password?</a></div>
                                 <button className="btn btn-neutral mt-4">Sign In</button>
-                                <p>New to Coffee Drinker? <Link to="/signup">Sign Up</Link></p>
+                                <p>Don't Have an Account? <Link to="/signup" className='text-blue-500'>Sign Up</Link></p>
                             </fieldset>
+                            <button type="button" className="btn btn-neutral mt-4" onClick={handleGoogleSignIn}>Sign In with Google</button>
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     );

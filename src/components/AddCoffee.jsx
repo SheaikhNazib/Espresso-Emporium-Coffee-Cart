@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
@@ -40,7 +40,7 @@ const AddCoffee = () => {
                         confirmButtonText: 'Ok'
                     }).then(() => {
                         e.target.reset();
-                        navigate('/');
+                        Navigate('/');
                     });
                 }
             })

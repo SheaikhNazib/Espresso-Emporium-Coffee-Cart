@@ -1,30 +1,71 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import React, { createContext, useState } from 'react';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import React, { createContext, useState, useEffect } from 'react';
 import { auth } from '../components/firebase/firebase.init';
 
-export const authContext = createContext(null)
+export const authContext = createContext(null);
 
-const AuthProvider = ({children}) => {
-
+const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
 
-    const createUser = (email, password) =>{
-        setLoading(true)
-        return createUserWithEmailAndPassword(auth, email, password)
-    }
-
-    const signInUser = (email, password) =>{
+    const createUser = (email, password) => {
         setLoading(true);
-        return signInWithEmailAndPassword(auth, email, password);
-    }
+        return createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                setUser(userCredential.user);
+                setLoading(false);
+                return userCredential;
+            })
+            .catch((error) => {
+                setLoading(false);
+                throw error;
+            });
+    };
 
-    const userInfo ={
-        user, 
+    const signInUser = (email, password) => {
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                setUser(userCredential.user);
+                setLoading(false);
+                return userCredential;
+            })
+            .catch((error) => {
+                setLoading(false);
+                throw error;
+            });
+    };
+
+    const signInWithGoogle = () => {
+        setLoading(true);
+        const provider = new GoogleAuthProvider();
+        return signInWithPopup(auth, provider)
+            .then((result) => {
+                setUser(result.user);
+                setLoading(false);
+                return result;
+            })
+            .catch((error) => {
+                setLoading(false);
+                throw error;
+            });
+    };
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            setUser(user);
+            setLoading(false);
+        });
+        return () => unsubscribe();
+    }, []);
+
+    const userInfo = {
+        user,
         loading,
-        createUser, 
+        createUser,
         signInUser,
-    }
+        signInWithGoogle,
+    };
 
     return (
         <authContext.Provider value={userInfo}>
