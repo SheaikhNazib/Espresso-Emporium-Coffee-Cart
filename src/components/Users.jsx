@@ -3,6 +3,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Users = () => {
 
@@ -46,7 +47,7 @@ const Users = () => {
     }
 
     return (
-        <div className='px-36 pt-10' style={{backgroundColor: '#f4f3f0'}}>
+        <div className='px-36 pt-10' style={{ backgroundColor: '#f4f3f0' }}>
 
             <Link to='/' className='text-2xl my-auto' style={{ fontFamily: 'Sour Gummy, sans-serif', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}><FontAwesomeIcon className='me-2 my-auto' icon={faRotateLeft} size="md" />Back to home</Link>
 
@@ -74,10 +75,14 @@ const Users = () => {
                                 <td>{user.createAt}</td>
                                 <td>{user.lastSignInTime}</td>
                                 <td>
-                                    <button className='btn'>Edit</button>
+                                    {/* <Link to={`/update-user/${user._id}`} className='btn'>Edit</Link> */}
+
+                                    {/* <button
+                                        onClick={() => handleUserDelete(user._id)}
+                                        className='btn'>X</button> */}
                                     <button
                                         onClick={() => handleUserDelete(user._id)}
-                                        className='btn'>X</button>
+                                        className="btn join-item bg-red-500" style={{ width: '90px' }}>Delete <FontAwesomeIcon className='me-2 my-auto' icon={faTrash} size="md" /></button>
                                 </td>
                             </tr>)
                         }

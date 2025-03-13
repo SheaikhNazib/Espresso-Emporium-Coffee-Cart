@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { authContext } from '../components/providers/AuthProvider';
+import { authContext } from '../providers/AuthProvider';
 import { Link } from 'react-router-dom';
 
 const SignIn = () => {

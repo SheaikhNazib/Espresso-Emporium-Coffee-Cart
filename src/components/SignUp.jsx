@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { authContext } from '../components/providers/AuthProvider';
+import { authContext } from '../providers/AuthProvider';
 
-const SignUp = () => {
+const SingUp = () => {
 
     const {createUser} = useContext(authContext);
     const navigate = useNavigate();
@@ -78,4 +78,4 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+export default SingUp;

@@ -43,7 +43,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <img className='ms-6' src={logo} style={{ width: '55px', height: '70px' }} alt="" />
-                <a className="text-xl font-bold">COFFEE CART</a>
+                <a className="text-xl font-bold glow-effect">COFFEE CART</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

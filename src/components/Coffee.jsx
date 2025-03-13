@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const Coffee = ({ coffee, loadedCoffees, setLoadedCoffees }) => {
+// importing aos
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+export default function Coffee({ coffee, loadedCoffees, setLoadedCoffees }) {
+    useEffect(() => {
+        AOS.init();
+    }, []);
 
     const { _id, name, chef, taste, photo } = coffee;
 
@@ -43,30 +54,31 @@ const Coffee = ({ coffee, loadedCoffees, setLoadedCoffees }) => {
     }
 
     return (
-        <div className="card lg:card-side bg-base-100 shadow-xl">
+        <div className="card lg:card-side bg-base-100 shadow-xl p-7">
             <figure>
-                <img
+                <img data-aos="fade-right" data-aos-duration="1500"
                     src={photo}
                     alt="coffee" />
             </figure>
-            <div className="flex w-full m-4 items-center justify-between">
+            <div className="flex w-full m-4 items-center justify-between" data-aos="fade-up" data-aos-duration="1500">
                 <div>
                     <p>Name: {name}</p>
                     <p>Chef: {chef}</p>
                     <p>Taste: {taste}</p>
                 </div>
                 <div className="card-actions justify-end join join-vertical">
-                    <button className="btn join-item">View</button>
+                    <Link to={`/view/${_id}`}>
+                        <button className="btn join-item bg-green-500" style={{width: '90px'}}>View <FontAwesomeIcon className='me-2 my-auto' icon={faEye} size="md" /></button>
+                    </Link>
+
                     <Link to={`/updateCoffee/${_id}`}>
-                        <button className="btn join-item">Edit</button>
+                        <button className="btn join-item bg-blue-500" style={{width: '90px'}}>Edit <FontAwesomeIcon className='me-2 my-auto' icon={faPenToSquare} size="md" /></button>
                     </Link>
                     <button
                         onClick={() => handleDelete(_id)}
-                        className="btn join-item bg-red-500">X</button>
+                        className="btn join-item bg-red-500" style={{width: '90px'}}>Delete <FontAwesomeIcon className='me-2 my-auto' icon={faTrash} size="md" /></button>
                 </div>
             </div>
         </div>
     );
 };
-
-export default Coffee;
