@@ -1,0 +1,28 @@
+.btn-hover {
+    transition: transform 0.3s ease, background-color 0.3s ease, border 0.3s ease;
+}
+.logo-hover {
+    transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.img-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.img-hover:hover {
+    transform: scale(1.1) rotate(3deg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0.9;
+}
+
+.btn-hover:hover {
+    transform: scale(1.1);
+    background-color: #ffffff; /* Change to your desired hover color */
+    border: 2px solid #e3b577; /* Add a border on hover */
+}
+
+.logo-hover:hover {
+    transform: scale(1.1);
+    background-color: #e3b577; /* Change to your desired hover color */
+    opacity: 0.8;
+}
