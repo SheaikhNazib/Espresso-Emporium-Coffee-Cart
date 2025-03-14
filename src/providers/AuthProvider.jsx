@@ -59,6 +59,7 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signOut(auth)
             .then(() => {
+                localStorage.clear(); // Clear local storage
                 setUser(null);
                 setLoading(false);
             })

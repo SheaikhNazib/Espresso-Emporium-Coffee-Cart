@@ -38,7 +38,7 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
         });
     }
 
-    const { _id, name, quantity, supplier, taste, category, details, photo } = coffee;
+    const { _id, name, quantity, supplier, taste, price, details, photo } = coffee;
 
     return (
         <div className="card card-side bg-base-100 shadow-xl p-4">
@@ -50,7 +50,7 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
                     <h2 className="card-title">{name}</h2>
                     <p>{quantity}</p>
                     <p>{supplier}</p>
-                    <p>{taste}</p>
+                    <p>{price}</p>
                 </div>
                 <div className="card-actions justify-end">
                     <div className="join join-vertical space-y-3 btn-accent">

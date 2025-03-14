@@ -5,6 +5,7 @@ import logo from '../../images/more/logo1.png';
 import Hero from './Hero';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../providers/AuthProvider'; // Import the useAuth hook
 
 const Header = () => {
@@ -17,12 +18,19 @@ const Header = () => {
         });
     };
 
-    const links = <>
-        <li><NavLink to="/" className="text-white">Home</NavLink></li>
-        <li><NavLink to="/addCoffee" className="text-white">Add Coffee</NavLink></li>
-        <li><NavLink to="/signin" className="text-white">Sign In</NavLink></li>
-        <li><NavLink to="/users" className="text-white">Users</NavLink></li>
-    </>;
+    const links = (
+        <>
+            <li><NavLink to="/" className="text-white">HOME</NavLink></li>
+            {user?.email === 'sheaikhnazib9@gmail.com' && (
+                <>
+                    <li><NavLink to="/addCoffee" className="text-white">ADD COFFEE</NavLink></li>
+                    <li><NavLink to="/users" className="text-white">USERS</NavLink></li>
+                </>
+            )}
+            <li><NavLink to="/store" className="text-white">BUY NOW</NavLink></li>
+            <li><NavLink to="/cart" className="text-white">CART</NavLink></li>
+        </>
+    );
 
     return (
         <div
@@ -52,7 +60,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <img className='ms-6' src={logo} style={{ width: '55px', height: '70px' }} alt="" />
-                <a className="text-xl font-bold glow-effect">COFFEE CART</a>
+                <a href='/' className="text-xl font-bold glow-effect">COFFEE CART</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -68,7 +76,7 @@ const Header = () => {
                         </button>
                     </>
                 ) : (
-                    <NavLink to="/signin" className="btn btn-primary">Login</NavLink>
+                    <NavLink to="/signin" className="btn text-black" style={{ fontFamily: 'Sour Gummy, sans-serif', background: '#e3b577' }}>Login <FontAwesomeIcon icon={faCircleUser}  size="2x" /></NavLink>
                 )}
             </div>
         </div>

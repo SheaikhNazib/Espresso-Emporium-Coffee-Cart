@@ -15,7 +15,7 @@ export default function Coffee({ coffee, loadedCoffees, setLoadedCoffees }) {
         AOS.init();
     }, []);
 
-    const { _id, name, chef, taste, photo } = coffee;
+    const { _id, name, chef, taste, photo, price } = coffee;
 
     const handleDelete = _id => {
         Swal.fire({
@@ -64,7 +64,7 @@ export default function Coffee({ coffee, loadedCoffees, setLoadedCoffees }) {
                 <div>
                     <p>Name: {name}</p>
                     <p>Chef: {chef}</p>
-                    <p>Taste: {taste}</p>
+                    <p>Price: {price}</p>
                 </div>
                 <div className="card-actions justify-end join join-vertical">
                     <Link to={`/view/${_id}`}>

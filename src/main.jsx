@@ -1,9 +1,7 @@
-
-
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App.jsx';
 
 import {
   createBrowserRouter,
@@ -18,7 +16,10 @@ import SingUp from './components/SignUp.jsx';
 import AuthProvider from './providers/AuthProvider.jsx';
 import Users from './components/Users.jsx';
 import View from './components/View.jsx';
-import Store from './components/Store.jsx'
+import Store from './components/Store.jsx';
+import Cart from './components/Cart.jsx'; // Import Cart component
+import { CartProvider } from './components/CartContext.jsx'; // Import CartProvider
+import ProductView from './components/ProductView.jsx';
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,12 @@ const router = createBrowserRouter([
         element: <Home></Home>,
         loader: () => fetch('http://localhost:5000/coffee')
       },
+      
     ]
+  },
+  {
+    path: 'cart',
+    element: <Cart></Cart> // Add Cart route
   },
   {
     path: 'addCoffee',
@@ -60,19 +66,23 @@ const router = createBrowserRouter([
     loader: ({ params }) => fetch(`http://localhost:5000/coffee/${params.id}`)
   },
   {
+    path: 'productView/:id',
+    element: <ProductView></ProductView>,
+    loader: ({ params }) => fetch(`http://localhost:5000/coffee/${params.id}`)
+  },
+  {
     path: 'store',
     element: <Store></Store>,
     loader: () => fetch('http://localhost:5000/coffee')
   },
-  
- 
-
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <CartProvider> {/* Wrap with CartProvider */}
+        <RouterProvider router={router} />
+      </CartProvider>
     </AuthProvider>
   </StrictMode>,
-)
+);

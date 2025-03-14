@@ -6,7 +6,7 @@ import { faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
 const UpdateCoffee = () => {
     const coffee = useLoaderData();
-    const { _id, name, chef, taste, photo, supplier, category, details } = coffee;
+    const { _id, name, chef, taste, photo, supplier, price, details } = coffee;
     const navigate = useNavigate();
 
     const handleUpdateCoffee = e => {
@@ -16,11 +16,11 @@ const UpdateCoffee = () => {
         const chef = e.target.chef.value;
         const supplier = e.target.supplier.value;
         const taste = e.target.taste.value;
-        const category = e.target.category.value;
+        const price = e.target.price.value;
         const details = e.target.details.value;
         const photo = e.target.photo.value;
 
-        const newCoffee = { name, chef, supplier, taste, category, details, photo };
+        const newCoffee = { name, chef, supplier, taste, price, details, photo };
         console.log(newCoffee);
 
         // send data to the server and database
@@ -98,9 +98,9 @@ const UpdateCoffee = () => {
                     <div className='flex flex-col lg:flex-row gap-5'>
                         <div className="form-control flex-1">
                             <label className="label">
-                                <span className="label-text my-1 font-bold">Category</span>
+                                <span className="label-text my-1 font-bold">Price</span>
                             </label> <br />
-                            <input type="text" name='category' defaultValue={category} placeholder="Coffee Category" className="input input-bordered" required />
+                            <input type="text" name='price' defaultValue={price} placeholder="Coffee price" className="input input-bordered" required />
                         </div>
                         <div className="form-control flex-1">
                             <label className="label">

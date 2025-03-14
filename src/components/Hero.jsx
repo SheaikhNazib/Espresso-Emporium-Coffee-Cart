@@ -8,6 +8,7 @@ import icon4 from '../../images/icons/4.png';
 // importing aos
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
     useEffect(() => {
@@ -30,14 +31,16 @@ export default function Hero() {
 
                     <p data-aos="fade-left" data-aos-duration="1500" className='text-xs my-3 text-zinc-400 pe-10'>It's coffee time - Sip & Savor - Relaxation in every sip! Get the nostalgia back!! Your companion of every moment!!! Enjoy the beautiful moments and make them memorable.</p>
 
-                    <button data-aos="fade-up" data-aos-duration="1500" className='btn-hover hover:text-white text-black px-3 py-2 ' style={{ fontFamily: 'Sour Gummy, sans-serif', background: '#e3b577' }}>Learn More</button>
+                    <Link to={`https://www.facebook.com`}>
+                        <button data-aos="fade-up" data-aos-duration="1500" className='btn-hover hover:text-white text-black px-3 py-2 ' style={{ fontFamily: 'Sour Gummy, sans-serif', background: '#e3b577' }}>Learn More</button>
+                    </Link>
                 </div>
             </div>
 
             {/* -------------- icons------------- */}
 
             <div className='flex gap-6 px-28 py-10' style={{ backgroundColor: '#eceae3' }}>
-                <div  data-aos="fade-right" data-aos-duration="2000">
+                <div data-aos="fade-right" data-aos-duration="2000">
                     <img src={icon1} alt="" />
                     <p className='py-1' style={{ fontFamily: 'Sour Gummy, sans-serif' }}>Awesome Aroma</p>
                     <p className='text-xs' style={{ fontFamily: 'Sour Gummy, sans-serif' }}>You will definitely be a fan of the design & aroma of your coffee</p>
