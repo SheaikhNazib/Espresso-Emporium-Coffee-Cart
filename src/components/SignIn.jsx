@@ -46,7 +46,7 @@ const SignIn = () => {
             .catch(error => {
                 console.error('Error signing in:', error);
                 Swal.fire({
-                    title: 'Error!',
+                    title: 'Email or Password is incorrect!',
                     text: error.message,
                     icon: 'error',
                     confirmButtonText: 'Ok'

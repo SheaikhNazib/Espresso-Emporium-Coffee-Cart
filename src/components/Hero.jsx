@@ -39,7 +39,7 @@ export default function Hero() {
 
             {/* -------------- icons------------- */}
 
-            <div className='flex gap-6 px-28 py-10' style={{ backgroundColor: '#eceae3' }}>
+            <div className='flex gap-6 px-28 py-10 mx-auto justify-around' style={{ backgroundColor: '#eceae3' }}>
                 <div data-aos="fade-right" data-aos-duration="2000">
                     <img src={icon1} alt="" />
                     <p className='py-1' style={{ fontFamily: 'Sour Gummy, sans-serif' }}>Awesome Aroma</p>
