@@ -30,7 +30,7 @@ export default function Footer() {
     };
 
     return (
-        <div className='mt-32 flex justify-around items-center ' style={{
+        <div className='pt-32 flex justify-around items-center ' style={{
             backgroundImage: `url(${footer_bg})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -80,6 +80,14 @@ export default function Footer() {
         </div>
     );
 };
+
+
+
+
+
+
+
+
 
 // import React, { useEffect } from 'react';
 // import footer_bg from '../../images/more/13.jpg';

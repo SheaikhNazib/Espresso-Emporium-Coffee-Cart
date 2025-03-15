@@ -20,6 +20,7 @@ import Store from './components/Store.jsx';
 import Cart from './components/Cart.jsx'; // Import Cart component
 import { CartProvider } from './components/CartContext.jsx'; // Import CartProvider
 import ProductView from './components/ProductView.jsx';
+import Feedback from './components/Feedback.jsx';
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
     path: 'store',
     element: <Store></Store>,
     loader: () => fetch('http://localhost:5000/coffee')
+  },
+  {
+    path: 'feedback',
+    element: <Feedback></Feedback>
   },
 ]);
 

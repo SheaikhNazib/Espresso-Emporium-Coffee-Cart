@@ -6,14 +6,13 @@ import Hero from './Hero';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
-import { useAuth } from '../providers/AuthProvider'; // Import the useAuth hook
+import { useAuth } from '../providers/AuthProvider'; 
 
 const Header = () => {
-    const { user, logout } = useAuth(); // Get the current user and logout function
+    const { user, logout } = useAuth(); 
 
     const handleLogout = () => {
         logout().then(() => {
-            // Redirect to the home page after logout
             window.location.href = '/';
         });
     };
@@ -29,6 +28,7 @@ const Header = () => {
             )}
             <li><NavLink to="/store" className="text-white">BUY NOW</NavLink></li>
             <li><NavLink to="/cart" className="text-white">CART</NavLink></li>
+            <li><NavLink to="/feedback" className="text-white">FEEDBACK</NavLink></li>
         </>
     );
 
